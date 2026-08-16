@@ -1,0 +1,23 @@
+{
+    "name": "sonsonyyy/php-practice",
+    "description": "Playground for practicing PHP: syntax, new features, OOP, Design Patterns, and other programming concepts.",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Erickson Salangsang",
+            "email": "sonsonyyy20@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpstan/phpstan": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse src"
+    }
+}
