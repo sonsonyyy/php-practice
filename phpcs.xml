@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_Practice_Rules">
+    <description>PSR-12 ruleset for practicing PHP</description>
+    <!-- Use the modern PSR-12 coding standard -->
+    <rule ref="PSR12"/>
+
+    <!-- Directories to scan -->
+    <file>src</file>
+</ruleset>

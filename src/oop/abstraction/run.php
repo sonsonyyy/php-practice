@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+namespace App\Oop\Abstraction;
+
+require_once realpath('vendor/autoload.php');
+
+use App\Oop\Abstraction\PayPal;
+
 /**
  * Abstraction hides complex background implementation details
  * and reveals only the necessary interface to the user.
@@ -11,16 +17,5 @@ declare(strict_types=1);
  * - The can contain abstract methods, which declare a template signature but
  * contain no code body. Any child class must provide the actual method implementation.
  */
-abstract class PaymentGateway
-{
-    abstract protected function processPayment(): string; // Blueprint only
-}
-
-class PayPal extends PaymentGateway
-{
-    #[Override]
-    public function processPayment(): string
-    {
-        return "Actual custom implementation details here";
-    }
-}
+$paypal = new PayPal();
+$paypal->processPayment();
