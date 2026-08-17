@@ -5,7 +5,32 @@ on:
     branches: [main]
 
 jobs:
-  # Define a dedicated job for running PHPStan static analysis
+  # Job 1: Check code style
+  lint:
+    # Use the latest Ubuntu Linux virtual machine provided by GitHub
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Clone your repository code using v5 to avoid Node.js deprecation warnings
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      # Step 2: Install PHP 8.4 and inject PHP_CodeSniffer globally
+      - name: Setup PHP 8.4 with PHPCS
+        uses: shivammathur/setup-php@v2
+        with:
+          # Match your project's PHP version
+          php-version: '8.4'
+          # Disable Xdebug to make the setup process significantly faster
+          coverage: none
+          # Installs phpcs globally so you do not waste time running "composer install" in this job
+          tools: phpcs
+
+      # Step 3: Run the code style check strictly on the src folder
+      - name: Check Style
+        # Running "phpcs src" ensures it only scans your source code and skips everything else
+        run: phpcs src
+
+  # Job 2: Run PHPStan static analysis
   static-analysis:
     # Use the latest Ubuntu Linux virtual machine provided by GitHub
     runs-on: ubuntu-latest
