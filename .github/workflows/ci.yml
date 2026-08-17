@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # Define a dedicated job for running PHPStan static analysis
+  static-analysis:
+    # Use the latest Ubuntu Linux virtual machine provided by GitHub
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Clone your repository code into the virtual machine
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install and configure the correct PHP environment
+      - name: Setup PHP 8.4 with Composer Cache
+        uses: shivammathur/setup-php@v2
+        with:
+          # Match project's PHP version
+          php-version: '8.4'
+          # Disable Xdebug to make the setup process significantly faster
+          coverage: none
+          # Enable automated global caching for Composer packages to speed up builds
+          tools: composer:v2 # Enables native, automatic dependency caching
+
+      # Step 3: Install all third-party PHP packages required by your application
+      - name: Install Dependencies
+        # --prefer-dist: Downloads fast zip archives instead of slow Git histories
+        # --no-progress: Hides messy download bars from cluttering the log files
+        # --no-interaction: Stops the job from freezing if a package prompts for input
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      # Step 4: Run the actual PHPStan scanner to check your code logic and types
+      - name: Run PHPStan
+        # Executes PHPStan. It returns code 0 on success, or code 1 to fail the build if bugs are found
+        run: vendor/bin/phpstan analyse
