@@ -21,12 +21,19 @@ Generate the Composer autoloader:
 composer dump-autoload
 ```
 
+## Configuration Files
+
+The repository includes pre-configured settings for static analysis and code quality:
+
+- `phpstan.neon` (PHPStan config)
+- `phpcs.xml` (PHP_CodeSniffer ruleset)
+
 ## Running PHP Files
 
 Run any PHP file directly using the PHP CLI:
 
 ```bash
-php exercises/example.php
+php src/oop/abstraction/run.php
 ```
 
 ## Autoloading
@@ -35,16 +42,30 @@ Classes inside `src/` are autoloaded using Composer PSR-4:
 
 ```text
 src/
-└── App/
-    └── Example.php
+└── oop/
+    └── encapsulation/
+        └── BankAccount.php
 ```
 
-## PHPStan
+## PHPStan (Static Analysis)
 
-Run static analysis with:
+Run static analysis:
 
 ```bash
-vendor/bin/phpstan analyse
+composer analyse
+```
+
+## PHP_CodeSniffer (Code Quality)
+
+Checking coding standards:
+
+```bash
+composer cs
+```
+
+Automatically fix violations:
+```bash
+composer cs:fix
 ```
 
 This repository is primarily for learning, experimentation, and improving PHP fundamentals.
