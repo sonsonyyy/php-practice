@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Clone your repository code into the virtual machine
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Step 2: Install and configure the correct PHP environment
       - name: Setup PHP 8.4 with Composer Cache
