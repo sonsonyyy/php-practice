@@ -10,7 +10,8 @@ require_once realpath('vendor/autoload.php');
  * In PHP, single inheritance means a class can extend only one parent class.
  * A Trait is a mechanism designed to reduce this limitation by enabling code reuse across independent classes.
  *
- * Instead of duplicating code or creating bloated base classes, traits allow you to group reusable methods and include (use) them into any class you want.
+ * Instead of duplicating code or creating bloated base classes, traits allow you to group reusable methods
+ * and include (use) them into any class you want.
  */
 
 // --- Usage ---
